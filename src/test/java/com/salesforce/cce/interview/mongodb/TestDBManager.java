@@ -7,12 +7,7 @@ import com.mongodb.DB;
 public class TestDBManager extends TestCase {
 
 	public static void testConnect() {
-		DB db = DBManager.connect(false, "cce");
-		assertNotNull(db);
-	}
-
-	public static void testConnectAuthenticated() {
-		DB db = DBManager.connect(true, "ccesecure");
+		DB db = DBManager.connect();
 		assertNotNull(db);
 	}
 

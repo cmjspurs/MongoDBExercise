@@ -15,10 +15,21 @@ import com.mongodb.DBObject;
 public class DBUtils {
 
 	private DB db;
+	private DBSettings settings;
+
 	private static final Logger logger = Logger.getLogger(DBManager.class);
+
+	private class DBSettings {
+		private boolean applyFormatting = false;
+	}
+
+	public DBUtils() {
+
+	}
 
 	public DBUtils(DB db) {
 		this.db = db;
+		this.settings = new DBSettings();
 	}
 
 	public void insert(DBObject obj, String collection) {
@@ -77,7 +88,12 @@ public class DBUtils {
 
 		for (String collection : db.getCollectionNames()) {
 			while (!hasBeenAdded) {
-				counts.put(collection, getCount(collection));
+				// apply formatting
+				String formattedCollection = formatForDatabase(collection);
+				boolean applyFormatting = getDBSetting("applyFormatting");
+				counts.put(applyFormatting ? formattedCollection : collection,
+						getCount(collection));
+				hasBeenAdded = counts.containsKey(collection);
 			}
 		}
 		return counts;
@@ -88,4 +104,19 @@ public class DBUtils {
 
 	}
 
+	protected String formatForDatabase(String input) {
+		return input.toUpperCase();
+	}
+
+	protected Boolean getDBSetting(String settingName) {
+
+		// for now we are only concerned with 1 setting
+		// throw an exception if any other settings are requested
+		if (settingName.equals("applyFormatting")) {
+			return settings.applyFormatting;
+		} else {
+			throw new IllegalArgumentException("Unsupported setting: "
+					+ settingName);
+		}
+	}
 }

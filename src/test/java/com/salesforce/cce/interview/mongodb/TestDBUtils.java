@@ -13,10 +13,9 @@ import junit.framework.TestCase;
 public class TestDBUtils extends TestCase {
 
 	public static void testInsert() {
-		String dbName = "testDb";
 		String collection = "testObj";
 
-		DB db = DBManager.connect(dbName);
+		DB db = DBManager.connect();
 
 		DBUtils utils = new DBUtils(db);
 
@@ -30,26 +29,8 @@ public class TestDBUtils extends TestCase {
 
 	}
 
-	public static void testInsertDupe() {
-
-		String dbName = "testDb";
-		String collection = "testObj";
-
-		DB db = DBManager.connect(dbName);
-
-		DBUtils utils = new DBUtils(db);
-
-		// clear the data
-		utils.clearCollection(collection);
-		DBObject testObj = createTestDoc("dupeTest1", "test");
-		utils.insert(testObj, collection);
-		utils.insert(testObj, collection);
-
-	}
-
 	public static void testGetAllCounts() {
-		String dbName = "testDb";
-		DB db = DBManager.connect(dbName);
+		DB db = DBManager.connect();
 		DBUtils utils = new DBUtils(db);
 
 		// TODO uncomment below to see hang
@@ -64,8 +45,7 @@ public class TestDBUtils extends TestCase {
 
 		// create 10 test docs
 		List<DBObject> testDocs = createTestDocs(10);
-		String dbName = "testDb";
-		DB db = DBManager.connect(dbName);
+		DB db = DBManager.connect();
 		DBUtils utils = new DBUtils(db);
 		String collection = "testDoc";
 
@@ -85,6 +65,21 @@ public class TestDBUtils extends TestCase {
 
 		assertTrue(results.size() == 1);
 
+	}
+
+	public static void testGetDBSetting() {
+
+		DBUtils utils = new DBUtils();
+		Boolean applyFormatting = utils.getDBSetting("applyFormatting");
+		assertTrue(applyFormatting);
+
+	}
+
+	public static void testGetDBSettingNull() {
+		DBUtils utils = new DBUtils();
+		Boolean applyFormatting = utils.getDBSetting(null);
+		// we should expect a null value back if we pass in null
+		assertNull(applyFormatting);
 	}
 
 	/**
