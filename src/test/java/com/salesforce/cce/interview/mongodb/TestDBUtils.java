@@ -29,18 +29,6 @@ public class TestDBUtils extends TestCase {
 
 	}
 
-	public static void testGetAllCounts() {
-		DB db = DBManager.connect();
-		DBUtils utils = new DBUtils(db);
-
-		// TODO uncomment below to see hang
-		/*
-		 * Map<String, Integer> counts = utils.getAllCounts();
-		 * 
-		 * assertTrue(counts != null);
-		 */
-	}
-
 	public static void testQuery() {
 
 		// create 10 test docs
@@ -64,6 +52,17 @@ public class TestDBUtils extends TestCase {
 		List<DBObject> results = utils.query(toFind, collection);
 
 		assertTrue(results.size() == 1);
+
+	}
+
+	public static void testGetAllCounts() {
+		DB db = DBManager.connect();
+		DBUtils utils = new DBUtils(db);
+
+		// TODO uncomment below to see hang
+//		Map<String, Integer> counts = utils.getAllCounts();
+//
+//		assertTrue(counts != null);
 
 	}
 

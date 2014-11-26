@@ -20,7 +20,7 @@ public class DBUtils {
 	private static final Logger logger = Logger.getLogger(DBManager.class);
 
 	private class DBSettings {
-		private boolean applyFormatting = false;
+		private boolean applyFormatting = true;
 	}
 
 	public DBUtils() {
