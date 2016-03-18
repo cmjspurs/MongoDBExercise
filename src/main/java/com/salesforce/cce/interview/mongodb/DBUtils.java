@@ -76,7 +76,7 @@ public class DBUtils {
 		coll.drop();
 	}
 
-	public void deleteAll() {
+	public void clearAll() {
 		// TODO should be similar to the clearCollection method but for all
 		// collections
 		// except for those starting with system.

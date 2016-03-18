@@ -18,7 +18,7 @@ import com.mongodb.MongoURI;
 public class DBManager {
 
 	private static final Logger logger = Logger.getLogger(DBManager.class);
-	private static String MONGO_URI = "mongodb://interview:Salesforce2014@ds055990.mongolab.com:55990/ccetestdb";
+	private static String MONGO_URI = "mongodb://cce:Salesforce2016@ds013599.mlab.com:13599/ccetestdb";
 
 	@SuppressWarnings("deprecation")
 	public static DB connect() {
