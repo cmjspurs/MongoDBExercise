@@ -13,7 +13,7 @@ import junit.framework.TestCase;
 public class TestDBUtils extends TestCase {
 
 	public static void testInsert() {
-		String collection = "testObj";
+		String collection = "testobj";
 
 		DB db = DBManager.connect();
 
@@ -35,7 +35,7 @@ public class TestDBUtils extends TestCase {
 		List<DBObject> testDocs = createTestDocs(10);
 		DB db = DBManager.connect();
 		DBUtils utils = new DBUtils(db);
-		String collection = "testDoc";
+		String collection = "testdoc";
 
 		// clear out the data first
 		utils.clearCollection(collection);
